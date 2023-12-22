@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
+    "--branch=stable", 
     lazypath,
   })
 end
@@ -23,7 +23,8 @@ local plugins = {
    -- Color scheme 
     {"nvim-treesitter/nvim-treesitter", build =":TSUpdate"},   
     {"loctvl842/monokai-pro.nvim", name="monokai-pro", priority=1000},
-    {'nvim-telescope/telescope.nvim', tag = '0.1.5',dependencies = { 'nvim-lua/plenary.nvim' }}
+    {'nvim-telescope/telescope.nvim', tag = '0.1.5',dependencies = { 'nvim-lua/plenary.nvim' }},
+    
 }
 local opts = {}
 
@@ -34,6 +35,12 @@ local builtin = require("telescope.builtin")
 vim.keymap.set('n', '<leader>sn', builtin.find_files, {})
 vim.keymap.set('n', '<leader>sf', builtin.live_grep, {})
 
+local treesitterConfig = require("nvim-treesitter.configs")
+treesitterConfig.setup({
+  ensure_installed = {"lua","javascript","java"},
+  highlight = {enable = true},
+  indent = {enable = true},
+})
 -- monokai setup
 require("monokai-pro").setup()
 
