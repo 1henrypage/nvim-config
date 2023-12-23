@@ -1,7 +1,6 @@
 return {
-  "nvim-lualine/lualine.vim",
-  name = "lualine",
+  "nvim-lualine/lualine.nvim",
   config = function()
-    require('lualine').setup()
+    require('lualine').setup({})
   end
 }
