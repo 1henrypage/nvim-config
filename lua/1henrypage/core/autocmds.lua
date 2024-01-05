@@ -1,0 +1,103 @@
+--[[
+-- Stolen from loctvl842/nvim 
+--]]
+
+local Util = require("1henrypage.util")
+
+-- Turn off paste mode when leaving insert so that formatting issues are not prevelant. 
+vim.api.nvim_create_autocmd("InsertLeave", {
+    command = "set nopaste",
+    pattern = "*", })
+
+-- Highlight on yank, easier to see visibly
+vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+  group = Util.augroup("highlight_yank"),
+  callback = function()
+    vim.highlight.on_yank({ higroup = "Visual" })
+  end,
+})
+
+-- resize splits to equal sizes if window got resized
+vim.api.nvim_create_autocmd({ "VimResized" }, {
+  group = Util.augroup("resize_splits"),
+  callback = function()
+    vim.cmd("tabdo wincmd =")
+  end,
+})
+
+-- Set wrap and spell in markdown and gitcommit
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = Util.augroup("wrap_spell"),
+  pattern = { "gitcommit", "markdown" },
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.spell = false
+  end,
+})
+
+-- Make sure when carriage return is pressed on a comment line, it doesn't bring the comment down unless it's a leader`j
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+  group = Util.augroup("comment_newline"),
+  pattern = { "*" },
+  callback = function()
+    vim.cmd([[set formatoptions-=cro]])
+  end,
+})
+
+-- custom titlestring
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  pattern = { "" },
+  callback = function()
+    local get_project_dir = function()
+      local cwd = vim.fn.getcwd()
+      local project_dir = vim.split(cwd, "/")
+      local project_name = project_dir[#project_dir]
+      return project_name
+    end
+
+    vim.opt.titlestring = get_project_dir()
+  end,
+})
+
+-- Move help to the right
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "help" },
+  callback = function()
+    vim.cmd([[wincmd L]])
+  end,
+})
+
+-- Hide stuff in terminal
+vim.api.nvim_create_autocmd({ "TermOpen" }, {
+  pattern = { "*" },
+  callback = function()
+    vim.opt_local["number"] = false
+    vim.opt_local["signcolumn"] = "no"
+    vim.opt_local["foldcolumn"] = "0"
+  end,
+})
+
+-- clear cmd output
+vim.api.nvim_create_autocmd({ "CursorHold" }, {
+  group = Util.augroup("clear_term"),
+  callback = function()
+    vim.cmd([[echon '']])
+  end,
+})
+
+-- start terminal in insert mode
+vim.api.nvim_create_autocmd("TermOpen", {
+    group = Util.augroup("open_terminal"),
+    pattern = '*',
+    command = 'startinsert | set winfixheight'
+})
+
+-- funny cursor business thing
+vim.api.nvim_exec([[
+  augroup 1henrypage_InsertModeCursorLine
+    autocmd!
+    autocmd InsertEnter * highlight CursorLine guibg=#005f5f ctermbg=23
+    autocmd InsertLeave * highlight CursorLine guibg=NONE ctermbg=NONE
+  augroup END
+]], false)
+

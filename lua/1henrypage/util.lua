@@ -3,6 +3,12 @@
 --]]
 local M = {}
 
+M.augroup = function(name)
+  return vim.api.nvim_create_augroup("1henrypage_" .. name, { clear = true })
+end
+
+
+
 ---@param name "autocmds" | "options" | "keymaps"
 M.load = function(name)
   local Util = require("lazy.core.util")
@@ -20,6 +26,7 @@ M.load = function(name)
     end,
   })
 end
+
 
 
 return M

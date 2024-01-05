@@ -5,7 +5,6 @@ local options = {
   autoread = true, 
   autowriteall = true, 
   background = "dark", 
-  backspace = "indent,start",
   backup = false,
   cdhome = true,
   clipboard = "unnamedplus",
@@ -37,6 +36,7 @@ local options = {
   spelllang = "en_gb",
   splitbelow = true,
   splitright = true,
+  termguicolors=true,
   timeoutlen = 500, -- make this shorter as I get faster, dictates how long it takes for vim to wait for a mapped sequence
   virtualedit = "onemore",
   -- tabs
