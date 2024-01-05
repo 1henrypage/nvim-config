@@ -1,14 +1,15 @@
 return {
     "loctvl842/monokai-pro.nvim", 
     name="monokai-pro", 
+    lazy = false,
     priority=1000,
-    config = function()
-      require('monokai-pro').setup({
-        filter="ristretto",
-        devicons = true,
-        styles = {
+    opts = {
+      transparent_background = false,
+      devicons = true, 
+      filter = "ristretto",
+      styles = {
           comment = { italic = true },
-          keyword = { italic = true }, -- any other keyword
+          keyword = { italic = true}, -- any other keyword
           type = { italic = true }, -- (preferred) int, long, char, etc
           storageclass = { italic = true }, -- static, register, volatile, etc
           structure = { italic = true }, -- struct, union, enum, etc
@@ -16,7 +17,10 @@ return {
           annotation = { italic = true },
           tag_attribute = { italic = true }, -- attribute of tag in reactjs
         }, 
-      })
-      vim.cmd([[colorscheme monokai-pro]])
+    },
+    config = function(_, opts)
+      local monokai = require('monokai-pro')        
+      monokai.setup(opts)
+      monokai.load()
     end
 }
