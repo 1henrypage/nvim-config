@@ -1,5 +1,7 @@
 --[[
 -- Stolen from loctvl842/nvim 
+-- 
+-- Generic information. Autocmds that are specific to things like lsp's are defined in their specific modules
 --]]
 
 local Util = require("1henrypage.util")

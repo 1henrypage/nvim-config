@@ -1,4 +1,4 @@
-local Util = require("1henrypage.util")
+local util = require("1henrypage.util")
 local Icons = require("1henrypage.core.icons")
 
 return {
@@ -90,7 +90,7 @@ return {
           }
         end,
         config = function(_, opts)
-            local builtin = require("telescope.builtin") 
+            local builtin = require("telescope.builtin")
 
             -- Load dependencies
 --             require('telescope').load_extension('neoclip')
