@@ -9,12 +9,11 @@ vim.api.nvim_create_autocmd("InsertLeave", {
     command = "set nopaste",
     pattern = "*", })
 
--- Highlight on yank, easier to see visibly
-vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-  group = Util.augroup("highlight_yank"),
-  callback = function()
-    vim.highlight.on_yank({ higroup = "Visual" })
-  end,
+-- highlight yanks
+vim.api.nvim_create_autocmd("TextYankPost", {
+  group    = Util.augroup("highlight_yanks"),
+  pattern  = "*",
+  callback = function() vim.highlight.on_yank { timeout = 200 } end
 })
 
 -- resize splits to equal sizes if window got resized
@@ -69,6 +68,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 -- Hide stuff in terminal
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
+  group = Util.augroup("terminal"),
   pattern = { "*" },
   callback = function()
     vim.opt_local["number"] = false
@@ -87,11 +87,17 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
 
 -- start terminal in insert mode
 vim.api.nvim_create_autocmd("TermOpen", {
-    group = Util.augroup("open_terminal"),
-    pattern = '*',
-    command = 'startinsert | set winfixheight'
+  desc = "Auto enter insert mode when opening a terminal",
+  group = Util.augroup("terminal"),
+  pattern = "*",
+  callback = function()
+    vim.defer_fn(function()
+      if vim.api.nvim_buf_get_option(0, 'buftype') == 'terminal' then
+        vim.cmd([[startinsert]])
+      end
+    end, 100)
+  end,
 })
-
 -- funny cursor business thing
 vim.api.nvim_exec([[
   augroup 1henrypage_InsertModeCursorLine

@@ -23,7 +23,7 @@ M.load = function(name)
       if modpath then
         Util.error(msg)
       end
-    end,
+   end,
   })
 end
 

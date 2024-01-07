@@ -29,10 +29,20 @@ map("n", "<A-C-k>", ":resize -1<CR>", opts)
 map("n", "<A-C-h>", ":vertical resize +1<CR>", opts)
 map("n", "<A-C-j>", ":resize +1<CR>", opts)
 map("n", "<A-C-l>", ":vertical resize -1<CR>", opts)
+-- No highlight 
+map("n", ";", ":noh<CR>", opts)
+
+-- switch windows
+-- default bind ctrl + w + r
 
 -- move text
 map("n", "<A-j>", ":m .+1<CR>==") -- move line up(n)
 map("n", "<A-k>", ":m .-2<CR>==") -- move line down(n)
 map("v", "<A-j>", ":m '>+1<CR>gv=gv") -- move line up(v)
 map("v", "<A-k>", ":m '<-2<CR>gv=gv") -- move line down(v)
+map("i", "<A-S-j>", "<ESC>:m .+1<CR>==gi")
+map("i", "<A-S-k>", "<ESC>:m .-2<CR>==gi")
 
+-- split window 
+map("n", "<leader>swv", ":vsplit<CR>")
+map("n", "<leader>swh", ":split<CR>")

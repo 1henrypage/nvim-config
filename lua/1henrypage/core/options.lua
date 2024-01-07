@@ -1,5 +1,4 @@
 -- Some of the things in this config are vim defined defaults. They have been explicitly defined.
-
 local options = {
   ambiwidth = "single",
   autoread = true, 
@@ -57,6 +56,19 @@ local options = {
   titlelen = 85, 
   -- session ops
   sessionoptions = { "buffers", "curdir", "tabpages", "winsize" },
+  -- folds
+  foldlevelstart = 99,
+  foldlevel = 99,
+  foldenable = true,
+  foldcolumn = "1",
+  fillchars = {
+    foldopen = "",
+    foldclose = "",
+    fold = " ",
+    foldsep = " ",
+    diff = "╱",
+    eob = " ",
+  },
 }
 
 vim.g.mapleader = " "
