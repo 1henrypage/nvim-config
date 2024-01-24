@@ -6,7 +6,6 @@ local treesitterLanguages = {
   "cmake",
   "cpp",
   "css",
-  "csv",
   "dockerfile",
   "haskell",
   "html",

@@ -104,7 +104,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 vim.api.nvim_exec([[
   augroup 1henrypage_InsertModeCursorLine
     autocmd!
-    autocmd InsertEnter * highlight CursorLine guibg=#005f5f ctermbg=23
+    autocmd InsertEnter * highlight CursorLine guibg=#005f00  ctermbg=23
     autocmd InsertLeave * highlight CursorLine guibg=NONE ctermbg=NONE
   augroup END
 ]], false)
