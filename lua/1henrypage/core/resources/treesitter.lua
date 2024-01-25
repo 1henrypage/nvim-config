@@ -35,6 +35,7 @@ return {
     build =":TSUpdate",
     opts = {
       ensure_installed = treesitterLanguages,
+      auto_install = true,
       highlight = {enable = true},
       indent = {enable = true, disable = {"yaml", "python", "html"}},
       context_commentstring = {enable = true},

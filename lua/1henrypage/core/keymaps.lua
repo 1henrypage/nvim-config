@@ -25,12 +25,12 @@ map("v", ">", ">gv")
 map("v", "p", '"_dP')
 
 -- window resizing
-map("n", "<A-C-k>", ":resize -1<CR>", opts)
-map("n", "<A-C-h>", ":vertical resize +1<CR>", opts)
-map("n", "<A-C-j>", ":resize +1<CR>", opts)
-map("n", "<A-C-l>", ":vertical resize -1<CR>", opts)
+map("n", "<A-C-k>", ":resize -1<CR>")
+map("n", "<A-C-h>", ":vertical resize +1<CR>")
+map("n", "<A-C-j>", ":resize +1<CR>")
+map("n", "<A-C-l>", ":vertical resize -1<CR>")
 -- No highlight 
-map("n", ";", ":noh<CR>", opts)
+map("n", ";", ":noh<CR>")
 
 -- switch windows
 -- default bind ctrl + w + r
@@ -44,5 +44,5 @@ map("i", "<A-S-j>", "<ESC>:m .+1<CR>==gi")
 map("i", "<A-S-k>", "<ESC>:m .-2<CR>==gi")
 
 -- split window 
-map("n", "<leader>swv", ":vsplit<CR>")
-map("n", "<leader>swh", ":split<CR>")
+map("n", "<leader>wv", ":vsplit<CR>")
+map("n", "<leader>wh", ":split<CR>")
