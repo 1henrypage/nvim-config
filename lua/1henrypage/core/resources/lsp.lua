@@ -39,7 +39,7 @@ return {
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         dependencies = {
             "williamboman/mason.nvim",
-            "williadependenciesmboman/mason-lspconfig.nvim",
+            "williamboman/mason-lspconfig.nvim",
         },
         config = function()
             local lspconfig = require("lspconfig")
