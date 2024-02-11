@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     spec = {
         { import = "1henrypage.core.resources" },
+        { import = "1henrypage.core.resources.lang.haskell", enabled = true}
     },
     defaults = {
         lazy = false,

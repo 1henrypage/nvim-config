@@ -275,26 +275,34 @@ return {
 		end,
 	},
 
-    {
-        "windwp/nvim-autopairs",
-        event = "InsertEnter",
-        opts = {
-            disable_filetype = {"TelescopePrompt", "spectre_panel", "text"},
-        },
-        config = function(_, opts)
-            local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-            local cmp = require("cmp")
-            cmp.event:on(
-              'confirm_done',
-              cmp_autopairs.on_confirm_done()
-            )
-            require("nvim-autopairs").setup(opts)
-        end
-    },
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		opts = {
+			disable_filetype = { "TelescopePrompt", "spectre_panel", "text" },
+		},
+		config = function(_, opts)
+			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+			local cmp = require("cmp")
+			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+			require("nvim-autopairs").setup(opts)
+		end,
+	},
 
-    
-
-
-
- 
+	{
+		"kevinhwang91/nvim-ufo",
+		dependencies = {
+			"kevinhwang91/promise-async",
+		},
+		opts = {
+			provider_selector = function(bufnr, filetype, buftype)
+				return { "treesitter", "indent" }
+			end,
+		},
+		config = function(_, opts)
+			require("ufo").setup(opts)
+			vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+			vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+		end,
+	},
 }
