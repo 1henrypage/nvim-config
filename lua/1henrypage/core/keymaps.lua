@@ -3,7 +3,6 @@ local map = function(mode,sequence,action)
     vim.keymap.set(mode, sequence, action, {noremap = true, silent =true})
 end
 
--- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
 --   visual_mode = "v",
