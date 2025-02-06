@@ -215,6 +215,12 @@ return {
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
+		dependencies = {
+		    "nvim-lua/plenary.nvim",
+
+
+
+        },
 		config = function()
 			vim.keymap.set("n", "<leader>t", ":Neotree toggle<CR>", {})
 		end,
