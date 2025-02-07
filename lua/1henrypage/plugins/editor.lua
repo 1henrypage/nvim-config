@@ -1,5 +1,3 @@
-local util = require("1henrypage.util")
-local Icons = require("1henrypage.core.icons")
 
 return {
 	-- Telescope Settings
@@ -129,7 +127,7 @@ return {
 			local builtin = require("statuscol.builtin")
 			require("statuscol").setup({
 				relculright = false,
-				ft_ignore = { "neo-tree" },
+				ft_ignore = { "no-tree" },
 				segments = {
 					{
 						-- line number
@@ -217,11 +215,15 @@ return {
 		branch = "v3.x",
 		dependencies = {
 		    "nvim-lua/plenary.nvim",
-
-
-
         },
-		config = function()
+        opts = {
+            close_if_last_window = false,
+            popup_border_style = "rounded",
+            enable_git_status = true,
+            enable_diagnostics = true,
+        },
+
+		config = function(_, opts)
 			vim.keymap.set("n", "<leader>t", ":Neotree toggle<CR>", {})
 		end,
 	},
@@ -294,8 +296,8 @@ return {
 			require("nvim-autopairs").setup(opts)
 		end,
 	},
+    {
 
-	{
 		"kevinhwang91/nvim-ufo",
 		dependencies = {
 			"kevinhwang91/promise-async",

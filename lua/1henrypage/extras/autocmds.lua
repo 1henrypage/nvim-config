@@ -4,7 +4,7 @@
 -- Generic information. Autocmds that are specific to things like lsp's are defined in their specific modules
 --]]
 
-local Util = require("1henrypage.util")
+local Utils = require("1henrypage.utils")
 
 -- Turn off paste mode when leaving insert so that formatting issues are not prevelant.
 vim.api.nvim_create_autocmd("InsertLeave", {
@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 
 -- highlight yanks
 vim.api.nvim_create_autocmd("TextYankPost", {
-    group = Util.augroup("highlight_yanks"),
+    group = Utils.augroup("highlight_yanks"),
     pattern = "*",
     callback = function()
         vim.highlight.on_yank({ timeout = 200 })
@@ -23,7 +23,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- resize splits to equal sizes if window got resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
-    group = Util.augroup("resize_splits"),
+    group = Utils.augroup("resize_splits"),
     callback = function()
         vim.cmd("tabdo wincmd =")
     end,
@@ -31,7 +31,7 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 
 -- Set wrap and spell in markdown and gitcommit
 vim.api.nvim_create_autocmd({ "FileType" }, {
-    group = Util.augroup("wrap_spell"),
+    group = Utils.augroup("wrap_spell"),
     pattern = { "gitcommit", "markdown" },
     callback = function()
         vim.opt_local.wrap = true
@@ -41,7 +41,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 -- Make sure when carriage return is pressed on a comment line, it doesn't bring the comment down unless it's a leader`j
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-    group = Util.augroup("comment_newline"),
+    group = Utils.augroup("comment_newline"),
     pattern = { "*" },
     callback = function()
         vim.cmd([[set formatoptions-=cro]])
@@ -73,7 +73,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 -- Hide stuff in terminal
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
-    group = Util.augroup("terminal"),
+    group = Utils.augroup("terminal"),
     pattern = { "*" },
     callback = function()
         vim.opt_local["number"] = false
@@ -84,7 +84,7 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
 
 -- clear cmd output
 vim.api.nvim_create_autocmd({ "CursorHold" }, {
-    group = Util.augroup("clear_term"),
+    group = Utils.augroup("clear_term"),
     callback = function()
         vim.cmd([[echon '']])
     end,
@@ -93,7 +93,7 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
 -- start terminal in insert mode
 vim.api.nvim_create_autocmd("TermOpen", {
     desc = "Auto enter insert mode when opening a terminal",
-    group = Util.augroup("terminal"),
+    group = Utils.augroup("terminal"),
     pattern = "*",
     callback = function()
         vim.defer_fn(function()

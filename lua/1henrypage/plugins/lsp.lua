@@ -1,5 +1,5 @@
-local Icons = require("1henrypage.core.icons")
-local Util = require("1henrypage.util")
+local Icons = require("1henrypage.extras").icons
+local Utils = require("1henrypage.utils")
 
 return {
     -- mason
@@ -51,7 +51,7 @@ return {
             })
 
             vim.api.nvim_create_autocmd("LspAttach", {
-                group = Util.augroup("LspConfig"),
+                group = Utils.augroup("LspConfig"),
                 callback = function(ev)
                     -- See `:help vim.lsp.*` for documentation on any of the below functions
                     local opts = { buffer = ev.buf, noremap = true, silent = true }

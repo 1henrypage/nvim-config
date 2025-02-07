@@ -1,3 +1,5 @@
+local Icons = require("1henrypage.extras").icons
+
 -- bootstrap lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -15,12 +17,24 @@ vim.opt.rtp:prepend(lazypath)
 -- load
 require("lazy").setup({
     spec = {
-        { import = "1henrypage.core.resources" },
-        { import = "1henrypage.core.resources.lang.haskell", enabled = false}
+        { import = "1henrypage.plugins" },
     },
     defaults = {
+        version = "*", -- latest stable version
         lazy = false,
-        version = "*",
+    },
+    install = {colorscheme = {"tokyonight"}},
+    change_detection = {
+        enabled = false,
+        notify = false,
+    },
+    ui = {
+        icons = {
+            ft = Icons.lazy.ft,
+            lazy = Icons.lazy.lazy,
+            loaded = Icons.lazy.loaded,
+            not_loaded = Icons.lazy.not_loaded,
+        },
     },
     performance = {
         rtp = {

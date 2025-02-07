@@ -1,3 +1,3 @@
-require("1henrypage.core.lazy")
-
+local instance = require("1henrypage")
+instance.assemble()
 
