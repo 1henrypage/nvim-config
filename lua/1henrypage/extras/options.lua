@@ -36,7 +36,8 @@ local options = {
   splitbelow = true,
   splitright = true,
   termguicolors=true,
-  timeoutlen = 300, -- make this shorter as I get faster, dictates how long it takes for vim to wait for a mapped sequence
+  timeoutlen = 400, -- make this shorter as I get faster, dictates how long it takes for vim to wait for a mapped sequence
+  ttimeoutlen = 5,
   virtualedit = "onemore",
   -- tabs
   expandtab = true,
