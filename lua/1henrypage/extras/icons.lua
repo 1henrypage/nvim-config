@@ -16,6 +16,9 @@
 ---@field bottom_left? string
 
 local M = {
+  bufferline = {
+    pinned = "󰐃",
+  },
   coolbeans = {
     vim = "",
     nvim = ""

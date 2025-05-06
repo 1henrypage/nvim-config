@@ -8,9 +8,8 @@ return {
         "MunifTanjim/nui.nvim",
         lazy = true,
     },
-    
+
     {
-        "nvim-tree/nvim-web-devicons"
+        "nvim-tree/nvim-web-devicons",
     },
 }
-

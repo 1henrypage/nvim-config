@@ -26,6 +26,7 @@ local options = {
   linespace = 0, -- widen or shorten space between chars 
   makeprg = "make",
   mouse = "a",
+  mousemoveevent = true,
   selection = "exclusive",
   showcmd = false,
   showtabline = 2,
