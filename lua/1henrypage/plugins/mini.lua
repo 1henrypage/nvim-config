@@ -18,6 +18,40 @@ local split_join_config = {
     },
 }
 
+local mini_snip_config = -- No need to copy this inside `setup()`. Will be used automatically.
+{
+  -- Array of snippets and loaders (see |MiniSnippets.config| for details).
+  -- Nothing is defined by default. Add manually to have snippets to match.
+  snippets = {},
+
+  -- TODO MODIFY CONFIG 
+
+  -- Module mappings. Use `''` (empty string) to disable one.
+  mappings = {
+    -- Expand snippet at cursor position. Created globally in Insert mode.
+    expand = '<C-j>',
+
+    -- Interact with default `expand.insert` session.
+    -- Created for the duration of active session(s)
+    jump_next = '<C-l>',
+    jump_prev = '<C-h>',
+    stop = '<C-c>',
+  },
+
+  -- Functions describing snippet expansion. If `nil`, default values
+  -- are `MiniSnippets.default_<field>()`.
+  expand = {
+    -- Resolve raw config snippets at context
+    prepare = nil,
+    -- Match resolved snippets at cursor position
+    match = nil,
+    -- Possibly choose among matched snippets
+    select = nil,
+    -- Insert selected snippet
+    insert = nil,
+  },
+}
+
 local ai_config = {
     -- Table with textobject id as fields, textobject specification as values.
     -- Also use this to disable builtin textobjects. See |MiniAi.config|.
